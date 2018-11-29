@@ -35,6 +35,9 @@ class Node(
     }
 }
 
+/**
+ * Returns non-excluded bordering elements
+ */
 fun Node.getBorders(
     min: Pair<Int, Int>,
     max: Pair<Int, Int>,
@@ -75,6 +78,9 @@ private fun heuristic(current: Pair<Int, Int>, target: Pair<Int, Int>) =
         .plus((current.second - target.second).square())
         .let { Math.sqrt(it) }
 
-private fun Node.getStepCost(it: Pair<Int, Int>) =
-    if (it.first == coords.first || it.second == coords.second) STEP_COST
+/**
+ * Gets the cost of the step. Assumes the step is valid.
+ */
+private fun Node.getStepCost(target: Pair<Int, Int>) =
+    if (target.first == coords.first || target.second == coords.second) STEP_COST
     else DIAGONAL_STEP_COST
